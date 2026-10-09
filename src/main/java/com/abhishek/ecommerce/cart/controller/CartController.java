@@ -1,0 +1,92 @@
+package com.abhishek.ecommerce.cart.controller;
+
+import com.abhishek.ecommerce.cart.dto.request.AddToCartRequestDto;
+import com.abhishek.ecommerce.cart.dto.request.UpdateCartItemRequestDto;
+import com.abhishek.ecommerce.cart.dto.response.CartResponseDto;
+import com.abhishek.ecommerce.cart.service.CartService;
+import com.abhishek.ecommerce.common.apiResponse.ApiResponse;
+import com.abhishek.ecommerce.common.apiResponse.ApiResponseBuilder;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.Operation;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
+
+@Tag(name = "Cart", description = "Shopping cart management")
+@RestController
+@RequestMapping("/api/v1/cart")
+@RequiredArgsConstructor
+public class CartController {
+
+    private final CartService cartService;
+
+    // ========================= GET CART =========================
+    @Operation(
+        summary = "Get user cart",
+        description = "Retrieves the current user's shopping cart"
+    )
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    @PreAuthorize("isAuthenticated()")
+    public ApiResponse<CartResponseDto> getCart() {
+        CartResponseDto response = cartService.getCartForCurrentUser();
+        return ApiResponseBuilder.success("Cart fetched successfully", response);
+    }
+
+    // ========================= ADD PRODUCT =========================
+    @Operation(
+        summary = "Add product to cart",
+        description = "Adds a product with specified quantity to the user's cart"
+    )
+    @PostMapping
+    @ResponseStatus(HttpStatus.OK)
+    @PreAuthorize("isAuthenticated()")
+    public ApiResponse<CartResponseDto> addProduct(
+            @Valid @RequestBody AddToCartRequestDto requestDto) {
+        CartResponseDto response = cartService.addProductForCurrentUser(requestDto);
+        return ApiResponseBuilder.success("Product added to cart successfully", response);
+    }
+
+    // ========================= UPDATE QUANTITY =========================
+    @Operation(
+        summary = "Update cart item quantity",
+        description = "Updates the quantity of a specific product in the user's cart"
+    )
+    @PutMapping("/products/{productId}")
+    @ResponseStatus(HttpStatus.OK)
+    @PreAuthorize("isAuthenticated()")
+    public ApiResponse<CartResponseDto> updateQuantity(
+            @PathVariable Long productId,
+            @Valid @RequestBody UpdateCartItemRequestDto requestDto) {
+        CartResponseDto response = cartService.updateQuantityForCurrentUser(productId, requestDto);
+        return ApiResponseBuilder.success("Cart updated successfully", response);
+    }
+
+    // ========================= REMOVE PRODUCT =========================
+    @Operation(
+        summary = "Remove product from cart",
+        description = "Removes a specific product from the user's cart"
+    )
+    @DeleteMapping("/products/{productId}")
+    @ResponseStatus(HttpStatus.OK)
+    @PreAuthorize("isAuthenticated()")
+    public ApiResponse<Void> removeProduct(@PathVariable Long productId) {
+        cartService.removeProductForCurrentUser(productId);
+        return ApiResponseBuilder.success("Product removed from cart successfully", null);
+    }
+
+    // ========================= CLEAR CART =========================
+    @Operation(
+        summary = "Clear cart",
+        description = "Removes all items from the user's cart"
+    )
+    @DeleteMapping("/clear")
+    @ResponseStatus(HttpStatus.OK)
+    @PreAuthorize("isAuthenticated()")
+    public ApiResponse<Void> clearCart() {
+        cartService.clearCartForCurrentUser();
+        return ApiResponseBuilder.success("Cart cleared successfully", null);
+    }
+}

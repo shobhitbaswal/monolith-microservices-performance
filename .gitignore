@@ -1,0 +1,50 @@
+# IntelliJ IDEA
+.idea/
+.vscode/
+*.iml
+
+data/
+ecommerce_db.mv.db
+ecommerce_db.trace.db
+application.*.local.yml
+
+.db
+.mv.db
+.trace.db
+
+.mvn/timing.properties
+
+surefire-reports/
+
+# Maven
+target/
+
+# Logs
+*.log
+logs/
+
+.github
+.gitattributes
+ecommerce-backend.iml
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment variables
+.env
+*.env
+
+.tmp
+.bak
+
+PERFORMANCE.md
+PROJECT_ANALYSIS.md
+
+DEPLOYMENT_READY_CHECKLIST.md
+
+debug.log
+
+Code Citations.md
+copilot-instructions.md
+/.github
