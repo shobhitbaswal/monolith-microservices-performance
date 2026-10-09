@@ -1,35 +1,26 @@
-# AbhiOnlineDukaan - E-commerce Backend
+# Monolith vs Microservices: Performance & Cost Analysis
 
-A production-ready, **modular monolithic** e-commerce backend built with **Spring Boot 3.2.5** and **Java 21** using domain-driven design principles. This project demonstrates incremental development with well-structured modules, comprehensive REST APIs, secure authentication, and professional-grade features.
+A cloud computing research project evaluating the performance, scalability, resource utilization, and cost trade-offs of monolithic and microservices architectures for an e-commerce application under different workload conditions.
 
----
+## Project Overview
 
-## 👨‍💻 Author
+This project uses an existing e-commerce application as the monolithic baseline. We will analyze its architecture and develop a corresponding microservices implementation to conduct a controlled comparative evaluation.
 
-**Abhishek Kumar**  
-**Backend Developer** | Java | Spring Boot | Spring Security
+### Original Application
 
-📧 Email: [Your Email]  
-🔗 GitHub: [https://github.com/yourusername](https://github.com/yourusername)  
-📦 Project Repository: [https://github.com/yourusername/ecommerce-backend](https://github.com/yourusername/ecommerce-backend)  
-🌐 Project Live Demo: [https://ecommerce-backend-w8mg.onrender.com](https://ecommerce-backend-w8mg.onrender.com)
+The monolithic e-commerce application was originally developed by **theabhishek-hub**.
 
-Note: The application may take a few seconds to start 
+Original repository: https://github.com/theabhishek-hub/ecommerce-backend
 
----
+### Our Research Contributions
 
-## 📋 Overview
+* Analysis of the original monolithic architecture and its dependencies.
+* Design and implementation of a microservices-based counterpart.
+* Definition and execution of workload and performance experiments.
+* Comparison of response time, throughput, CPU and memory utilization, scalability, and deployment cost.
 
-AbhiOnlineDukaan is a fully functional e-commerce platform with 11+ modular components supporting:
+**Attribution:** The original application is credited to its author. The microservices implementation and experimental findings will be attributed to our research team, based on the work actually completed.
 
-- **Multi-role system**: ADMIN, SELLER, USER roles with hierarchical permissions
-- **Secure authentication**: JWT (HS512) + OAuth2 (Google Sign-In)
-- **Payment processing**: Razorpay integration with webhook verification
-- **Product ecosystem**: Catalog, categories, brands, inventory management
-- **Order lifecycle**: Cart → Checkout → Payment → Order tracking
-- **Async notifications**: Email service with background processing
-- **Admin dashboard**: User, product, order, seller, inventory management
-- **Seller portal**: Self-serve product and order management
 
 ---
 
