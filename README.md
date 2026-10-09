@@ -1,26 +1,37 @@
-# Monolith vs Microservices: Performance & Cost Analysis
+# Monolith vs Microservices: Performance and Cost Analysis
 
-A cloud computing research project evaluating the performance, scalability, resource utilization, and cost trade-offs of monolithic and microservices architectures for an e-commerce application under different workload conditions.
+A cloud-focused engineering and research project investigating how monolithic and microservices architectures differ in performance, resource utilization, scalability, and deployment cost under varying workload conditions.
 
-## Project Overview
+## Overview
 
-This project uses an existing e-commerce application as the monolithic baseline. We will analyze its architecture and develop a corresponding microservices implementation to conduct a controlled comparative evaluation.
+This project implements an e-commerce application using two architectural approaches: a **modular monolith** and a **microservices architecture**. Both implementations provide a basis for evaluating the trade-offs between architectural simplicity, distributed communication overhead, resource consumption, and scalability.
 
-### Original Application
+The objective is to determine how architectural choices influence application performance and infrastructure requirements under controlled experimental conditions.
 
-The monolithic e-commerce application was originally developed by **theabhishek-hub**.
+## Architecture Implementations
 
-Original repository: https://github.com/theabhishek-hub/ecommerce-backend
+* **Monolithic Architecture:** An e-commerce backend organized into cohesive domain modules and deployed as a single application.
+* **Microservices Architecture:** An independently deployable service-based implementation with clearly defined service boundaries and inter-service communication.
 
-### Our Research Contributions
+Both implementations are designed to support comparable business operations and workloads, enabling a meaningful performance and cost comparison.
 
-* Analysis of the original monolithic architecture and its dependencies.
-* Design and implementation of a microservices-based counterpart.
-* Definition and execution of workload and performance experiments.
-* Comparison of response time, throughput, CPU and memory utilization, scalability, and deployment cost.
+## Experimental Evaluation
 
-**Attribution:** The original application is credited to its author. The microservices implementation and experimental findings will be attributed to our research team, based on the work actually completed.
+The implementations are evaluated under different workload conditions using the following metrics:
 
+* **Response Time:** Average and percentile-based request latency.
+* **Throughput:** Successfully processed requests per second.
+* **Resource Utilization:** CPU and memory consumption.
+* **Scalability:** Changes in performance as workload and resource allocation increase.
+* **Deployment Cost:** Infrastructure requirements and associated operating costs.
+
+## My Contributions
+
+* Designed and implemented the monolithic and microservices architectures.
+* Defined service boundaries and inter-service communication patterns.
+* Configured the deployment and workload-testing environments.
+* Conducted comparative performance and resource-utilization experiments.
+* Analyzed the results to identify architectural trade-offs and scalability characteristics.
 
 ---
 
