@@ -1,0 +1,46 @@
+services:
+  mysql:
+    image: mysql:8.4
+    environment:
+      MYSQL_DATABASE: ecommerce_research
+      MYSQL_USER: ecommerce
+      MYSQL_PASSWORD: research-only-password
+      MYSQL_ROOT_PASSWORD: research-only-root-password
+    volumes:
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -uroot -p\"$$MYSQL_ROOT_PASSWORD\" --silent"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    restart: unless-stopped
+
+  monolith:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      SPRING_PROFILES_ACTIVE: research
+      PORT: "8080"
+      DB_USER: ecommerce
+      DB_PASSWORD: research-only-password
+      DATABASE_URL: "jdbc:mysql://mysql:3306/ecommerce_research?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC"
+      DB_POOL_SIZE: "10"
+      DB_MIN_IDLE: "2"
+      JWT_ACCESS_SECRET: research-only-access-secret-at-least-32-characters
+      JWT_REFRESH_SECRET: research-only-refresh-secret-at-least-32-characters
+    ports:
+      - "127.0.0.1:8080:8080"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O /dev/null http://127.0.0.1:8080/actuator/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 18
+      start_period: 90s
+    restart: unless-stopped
+
+volumes:
+  mysql-data:

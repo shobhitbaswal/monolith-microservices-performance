@@ -1,0 +1,87 @@
+# Isolated configuration for reproducible local research experiments.
+# Never use these placeholder credentials in a deployed environment.
+
+server:
+  port: ${PORT:8080}
+
+spring:
+  thymeleaf:
+    cache: true
+  datasource:
+    url: ${DATABASE_URL:jdbc:mysql://mysql:3306/ecommerce_research?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC}
+    username: ${DB_USER:ecommerce}
+    password: ${DB_PASSWORD:research-only-password}
+    hikari:
+      maximum-pool-size: ${DB_POOL_SIZE:10}
+      minimum-idle: ${DB_MIN_IDLE:2}
+      connection-timeout: 30000
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+    open-in-view: false
+  flyway:
+    enabled: true
+    baseline-on-migrate: false
+    locations: classpath:db/migration
+  cache:
+    type: simple
+  mail:
+    host: ${MAIL_HOST:localhost}
+    port: ${MAIL_PORT:1025}
+    username: ${MAIL_USERNAME:}
+    password: ${MAIL_PASSWORD:}
+    properties:
+      mail.smtp.auth: false
+      mail.smtp.starttls.enable: false
+      mail.smtp.connectiontimeout: 5000
+      mail.smtp.timeout: 5000
+      mail.smtp.writetimeout: 5000
+
+config:
+  jwt:
+    access-secret: ${JWT_ACCESS_SECRET:research-only-access-secret-at-least-32-characters}
+    refresh-secret: ${JWT_REFRESH_SECRET:research-only-refresh-secret-at-least-32-characters}
+    access-token-expiration: 900000
+    refresh-token-expiration: 604800000
+  security:
+    max-failed-attempts: 5
+    lockout-duration-minutes: 30
+    password-reset-token-expiry-hours: 24
+    oauth2:
+      enabled: false
+  admin:
+    email: ${ADMIN_EMAIL:admin@research.local}
+    password: ${ADMIN_PASSWORD:research-only-admin-password}
+    full-name: ${ADMIN_FULL_NAME:Research Administrator}
+  email:
+    shipping-team-email: ${SHIPPING_TEAM_EMAIL:shipping@research.local}
+
+cloudinary:
+  cloud-name: ${CLOUDINARY_CLOUD_NAME:}
+  api-key: ${CLOUDINARY_API_KEY:}
+  api-secret: ${CLOUDINARY_API_SECRET:}
+
+razorpay:
+  key-id: ${RAZORPAY_KEY_ID:}
+  key-secret: ${RAZORPAY_KEY_SECRET:}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,caches
+      base-path: /actuator
+  endpoint:
+    health:
+      show-details: always
+    metrics:
+      enabled: true
+  health:
+    db:
+      enabled: true
+
+logging:
+  level:
+    root: WARN
+    com.ecommerce: INFO
