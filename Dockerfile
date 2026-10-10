@@ -1,5 +1,5 @@
 # ============================================================================
-# Multi-stage Dockerfile for AbhiOnlineDukaan - Optimized for Render
+# Multi-stage Dockerfile for Monolith E-Commerce research baseline - Optimized for Render
 # Stage 1: Build the application
 # Stage 2: Run the application with minimal image size
 # ============================================================================

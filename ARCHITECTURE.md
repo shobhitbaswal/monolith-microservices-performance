@@ -1,8 +1,11 @@
-# ARCHITECTURE - System Design & Technical Details
+# Monolithic E-commerce Baseline — Architecture
 
 ## 1. System Overview
 
-AbhiOnlineDukaan is a **modular monolithic** e-commerce backend built using **Domain-Driven Design (DDD)** principles with incremental development methodology. The system evolves through distinct phases:
+
+This document describes the modular-monolith e-commerce backend used as the baseline for our research comparing monolithic and microservices architectures. It summarizes the application's domain modules, dependencies, persistence layer,
+API structure, and deployment model.
+
 
 ```
 Phase 1: Domain Entities → Phase 2: CRUD Operations → Phase 3: API Design → Phase 4: Cross-Cutting Concerns
@@ -381,7 +384,7 @@ public class User extends BaseEntity {
 
 ### Phase 2: CRUD Operations
 Implement repositories and services:
-```java
+```text
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByEmail(String email);
@@ -411,7 +414,7 @@ public class UserService {
 
 ### Phase 3: API Design
 Create REST endpoints with proper HTTP methods:
-```java
+```text
 @RestController
 @RequestMapping("/api/v1/products")
 @RequiredArgsConstructor
@@ -502,11 +505,11 @@ public class SecurityConfig {
     <appender-ref ref="FILE"/>
 </root>
 
-<logger name="com.abhishek.ecommerce" level="DEBUG"/>
+<logger name="com.ecommerce" level="DEBUG"/>
 ```
 
 #### C. Caching
-```java
+```text
 @Configuration
 @EnableCaching
 public class CacheConfig {
@@ -1072,15 +1075,6 @@ mvn jacoco:report           # Coverage report
 ---
 
 ## 20. Conclusion
-
-AbhiOnlineDukaan demonstrates a well-architected, production-ready e-commerce backend built with:
-
-- ✅ **Domain-Driven Design** - Clear module boundaries
-- ✅ **Incremental Development** - Phases from entities → APIs → security
-- ✅ **Clean Architecture** - Separation of concerns across layers
-- ✅ **Security First** - JWT, OAuth2, role-based access
-- ✅ **Scalability** - Modular monolithic, ready for microservices
-- ✅ **Best Practices** - Design patterns, error handling, testing
-- ✅ **Production Ready** - Docker, environment config, monitoring
-
-This project serves as a comprehensive reference for building enterprise-grade Spring Boot applications.
+The application provides a modular-monolith baseline for the research project.
+Its domain boundaries, inter-module dependencies, database relationships, and operational characteristics will inform the design of the corresponding microservices implementation.
+Performance and resource-utilization claims will be established through controlled experiments rather than assumed from the architecture documentation.

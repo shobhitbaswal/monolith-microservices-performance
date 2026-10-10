@@ -141,7 +141,7 @@ info:
 logging:
   level:
     root: info
-    com.abhishek.ecommerce: debug
+    com.ecommerce: debug
     org.hibernate.sql: debug
     org.springframework.security: debug
 

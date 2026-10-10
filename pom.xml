@@ -14,11 +14,11 @@
         <relativePath/>
     </parent>
 
-    <groupId>com.abhishek</groupId>
+    <groupId>io.github.shobhitbaswal</groupId>
     <artifactId>ecommerce-backend</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>ecommerce-backend</name>
-    <description>Modular monolithic AbhiOnlineDukaan backend built with Spring Boot</description>
+    <description>Monolithic e-commerce baseline for monolith vs microservices performance research</description>
 
     <properties>
         <java.version>21</java.version>
@@ -245,7 +245,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>3.2.5</version>
                 <configuration>
-                    <mainClass>com.abhishek.ecommerce.EcommerceBackendApplication</mainClass>
+                    <mainClass>com.ecommerce.EcommerceBackendApplication</mainClass>
                 </configuration>
             </plugin>
 

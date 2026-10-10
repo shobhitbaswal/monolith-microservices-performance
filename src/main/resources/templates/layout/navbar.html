@@ -2,14 +2,15 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>AbhiOnlineDukaan</title>
+    <title>E-Commerce Research Baseline</title>
+
 </head>
 <body>
 
 <!-- layout/navbar.html -->
 <nav class="navbar" th:fragment="navbar">
     <div class="nav-container">
-        <h1 class="nav-logo"><a th:href="@{/}" style="text-decoration: none; color: white;">AbhiOnlineDukaan</a></h1>
+        <h1 class="nav-logo"><a th:href="@{/}" style="text-decoration: none; color: white;">E-Commerce Store</a></h1>
         
         <!-- Product Search Bar (visible to all users) -->
         <form th:action="@{/products-page}" method="get" class="nav-search" style="display: flex; gap: 8px; margin-left: auto; margin-right: 20px; flex: 0 1 auto; min-width: 150px; max-width: 300px;">

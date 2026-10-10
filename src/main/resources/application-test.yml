@@ -95,4 +95,4 @@ management:
 logging:
   level:
     root: warn
-    com.abhishek.ecommerce: info
+    com.ecommerce: info
