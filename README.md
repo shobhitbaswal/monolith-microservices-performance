@@ -125,16 +125,30 @@ The test scenarios exercise product-catalog retrieval, product-detail retrieval,
 
 ## Results summary
 
-At 50 VUs, both architectures completed the benchmark without errors.
+Two local trials were completed for each architecture at 50 virtual users (VUs)
+for 60 seconds per trial. Both implementations recorded zero failed checks and
+a 0% failed HTTP request rate in these trials.
 
-At 100 VUs, the microservices implementation achieved:
+The arithmetic means of the two trial-level summaries were:
 
-- 5.4% higher throughput
-- 25% lower average latency
-- 39% lower p95 latency
-- A lower median error rate than the monolithic implementation
+| Metric | Monolith | Microservices |
+|---|---:|---:|
+| Throughput (requests/s) | 484.73 | 476.04 |
+| Average HTTP duration (ms) | 2.73 | 4.30 |
+| Median HTTP duration (ms) | 1.92 | 2.09 |
+| p95 HTTP duration (ms) | 7.20 | 13.03 |
 
-Results depend on the workload, machine configuration, JVM settings, database configuration, and deployment environment.
+In these runs, the monolith recorded approximately 1.8% higher throughput.
+The microservices implementation recorded higher average and p95 HTTP latency.
+Synchronous inter-service HTTP calls may contribute to the difference, but
+these measurements do not isolate their effect.
+
+These are preliminary local results, not a universal comparison of the two
+architectural styles. The databases were not reset to identical starting
+states before every trial, only two trials per architecture are available,
+and CPU/memory utilization was not measured. The results do not substantiate
+a 100-VU performance claim. See [BENCHMARK_RESULTS.md](BENCHMARK_RESULTS.md)
+for individual trials, methodology, and limitations.
 
 ## Reproducibility
 
