@@ -2,19 +2,6 @@
 
 This repository contains the source code and k6 load-testing scripts for an empirical comparison of monolithic and microservices architectures for an e-commerce application.
 
-📄 **Research paper:** [An Empirical Comparison of Monolithic and Microservices Architectures for an E-Commerce Application](https://arxiv.org/abs/2608.15668)
-📌 **arXiv:** [arXiv:2608.15668 [cs.SE]](https://arxiv.org/abs/2608.15668)
-
-## Research paper
-
-**Title:** An Empirical Comparison of Monolithic and Microservices Architectures for an E-Commerce Application
-
-**Author:** Swayam Amol Katole
-
-**Status:** Publicly available as an arXiv preprint.
-
-This study evaluates equivalent monolithic and microservices implementations under HTTP load at 50 and 100 virtual users (VUs). The measurements include throughput, average latency, p95 latency, and error rate.
-
 ## Technology stack
 
 - Java 21
@@ -159,16 +146,6 @@ To reproduce or extend the study:
 3. Run the appropriate k6 script at the desired virtual-user level.
 4. Repeat each configuration multiple times.
 5. Compare median throughput, latency, and error-rate measurements.
-
-## Citation
-
-If you use this repository, please cite:
-
-```text
-Swayam Amol Katole. An Empirical Comparison of Monolithic and Microservices Architectures for an E-Commerce Application. arXiv:2608.15668 [cs.SE], 2026.
-```
-
-Paper: [https://arxiv.org/abs/2608.15668](https://arxiv.org/abs/2608.15668)
 
 ## License
 
