@@ -147,6 +147,3 @@ To reproduce or extend the study:
 4. Repeat each configuration multiple times.
 5. Compare median throughput, latency, and error-rate measurements.
 
-## License
-
-This project is released under the MIT License. See [LICENSE](LICENSE).
