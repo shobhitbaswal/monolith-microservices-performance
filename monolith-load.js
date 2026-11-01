@@ -11,7 +11,7 @@ export const options = {
 var BASE_URL = 'http://localhost:8080';
 
 export default function () {
-  var userId = ((__VU - 1) % 50) + 1;
+  var userId = __VU;
 
   var res = http.get(BASE_URL + '/products');
   var ok = check(res, {

@@ -1,0 +1,64 @@
+services:
+  db:
+    image: postgres:17
+    environment:
+      POSTGRES_USER: benchmark
+      POSTGRES_PASSWORD: benchmark_pass
+      POSTGRES_DB: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - microservices_db_data:/var/lib/postgresql/data
+      - ./docker/microservices/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U benchmark"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  catalog:
+    build: ./microservices/catalog-service
+    ports:
+      - "8081:8081"
+    environment:
+      SERVER_PORT: 8081
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/catalog_db
+      SPRING_DATASOURCE_USERNAME: benchmark
+      SPRING_DATASOURCE_PASSWORD: benchmark_pass
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    depends_on:
+      db:
+        condition: service_healthy
+
+  cart:
+    build: ./microservices/cart-service
+    ports:
+      - "8083:8083"
+    environment:
+      SERVER_PORT: 8083
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/cart_db
+      SPRING_DATASOURCE_USERNAME: benchmark
+      SPRING_DATASOURCE_PASSWORD: benchmark_pass
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    depends_on:
+      db:
+        condition: service_healthy
+
+  order:
+    build: ./microservices/order-service
+    ports:
+      - "8082:8082"
+    environment:
+      SERVER_PORT: 8082
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/order_db
+      SPRING_DATASOURCE_USERNAME: benchmark
+      SPRING_DATASOURCE_PASSWORD: benchmark_pass
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SERVICES_CATALOG_BASE_URL: http://catalog:8081
+      SERVICES_CART_BASE_URL: http://cart:8083
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  microservices_db_data:

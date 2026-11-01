@@ -1,0 +1,3 @@
+CREATE DATABASE catalog_db;
+CREATE DATABASE cart_db;
+CREATE DATABASE order_db;

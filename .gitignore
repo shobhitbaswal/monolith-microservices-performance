@@ -16,3 +16,10 @@ application-local.properties
 # Logs and generated test results
 *.log
 results/
+
+# Large raw k6 event exports (retain locally; publish summarized results)
+cloud-results/*.json
+
+# Temporary editor files
+*.swp
+*.swo

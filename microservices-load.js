@@ -14,7 +14,7 @@ const BASE_ORDER = 'http://localhost:8082';
 const BASE_CART = 'http://localhost:8083';
 
 export default function () {
-  const userId = ((__VU - 1) % 50) + 1;
+  const userId = __VU;
   const sessionId = String(userId);
 
   // 1. List products

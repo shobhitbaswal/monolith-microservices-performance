@@ -1,0 +1,32 @@
+services:
+  db:
+    image: postgres:17
+    environment:
+      POSTGRES_DB: benchmark_monolith
+      POSTGRES_USER: benchmark
+      POSTGRES_PASSWORD: benchmark_pass
+    ports:
+      - "5432:5432"
+    volumes:
+      - monolith_db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U benchmark -d benchmark_monolith"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  monolith:
+    build: ./monolith
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/benchmark_monolith
+      SPRING_DATASOURCE_USERNAME: benchmark
+      SPRING_DATASOURCE_PASSWORD: benchmark_pass
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  monolith_db_data:
